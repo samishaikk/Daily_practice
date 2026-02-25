@@ -1,2 +1,2 @@
 # Upskilling
-My try of forcing daily accountability on learning something new and building consistency.
+My attempt at forcing daily accountability on learning something new and building consistency.
