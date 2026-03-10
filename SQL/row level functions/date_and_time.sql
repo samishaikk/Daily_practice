@@ -44,3 +44,36 @@ select orderid,creationtime,
 eomonth(creationtime)endofmonth,
 datetrunc(month,creationtime)startofmonth
 from sales.orders
+
+
+--how many orders were placed each year?
+select orderdate,count(*) NrOfOrders from sales.orders group by OrderDate
+select year(orderdate), count(*) NrOforders from sales.orders group by year(orderdate)
+
+select month(orderdate), count(*) NrOforders from sales.orders group by month(orderdate)
+
+select datename(month,orderdate), count(*) NrOforders from sales.orders group by datename(month,orderdate)
+
+
+--Data filtering
+
+-- show all orderes that were placed during the month of feb
+select * from sales.orders where month(orderdate)=2; 
+
+--datatype output of each functions
+--day month year datepart -> output is integer
+--datename                -> output is string
+--datetrunc               -> output is datetime
+--eomonth                 -> output is date 
+
+
+
+
+--understanding the logic
+select orderid,creationtime,datepart(month,creationtime) month_dp from sales.orders;
+select orderid,creationtime,datename(month,creationtime) month_dp from sales.orders;
+select orderid,creationtime,datetrunc(month,creationtime) month_dp from sales.orders;
+
+select orderid,creationtime,datepart(DAYOFYEAR,creationtime) dayofyear from sales.orders;
+select orderid,creationtime,datepart(weekday,creationtime) month_dp from sales.orders;
+

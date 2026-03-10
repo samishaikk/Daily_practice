@@ -7,3 +7,6 @@ round(3.156,0) as round_0
 
 select -10,
 abs(-10) as absolutevalue
+
+
+ 
