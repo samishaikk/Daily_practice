@@ -76,4 +76,90 @@ select orderid,creationtime,datetrunc(month,creationtime) month_dp from sales.or
 
 select orderid,creationtime,datepart(DAYOFYEAR,creationtime) dayofyear from sales.orders;
 select orderid,creationtime,datepart(weekday,creationtime) month_dp from sales.orders;
+ 
 
+
+-- FORMAT & CASTING
+-- YYYY--MM--DD & HH:mm:ss  
+
+-- FORMATTING
+-- changing format of value from one to another
+-- changing how the data looks
+
+--c -> currency 
+--p -> percentage
+
+-- CASTING 
+-- changing data type from one to another
+-- cast() or convert()
+-- string to number , date to string, etc...
+
+-- SYNTAX 
+-- FORMAT(value, format [,culture])
+
+-- default culture = 'en-US'
+
+
+
+-- task
+-- show cret.time using following format
+-- day wed jan q1 2025 12:34:56PM
+
+
+select 
+orderid,CreationTime,
+format(creationtime,'yyyy-MM-dd')standard,
+format(creationtime,'MM-dd-yyyy')USA_format,
+format(creationtime,'dd')dd,
+format(creationtime,'ddd')ddd,
+format(creationtime,'dddd')dddd,
+format(creationtime,'M')m,
+format(creationtime,'MM')mm,
+format(creationtime,'MMM')mmm
+from sales.orders;
+
+  
+select format(orderdate, 'MMM yy')Orderdate,count(*) from sales.orders group by format(orderdate, 'MMM yy');
+
+
+-- CONVERT()
+-- syntax
+-- convert(data_type, value [,style])
+-- default value for style = 0
+
+select 
+convert(int,'123') as [string to int convertion],
+convert(date,'2026-3-11') as [string to date],
+creationtime,
+convert(date,creationtime) as [datetime to date],
+convert(varchar,creationtime,32) as [usa std. Style:32]
+from sales.orders;
+
+-- CAST() -> value to specified datatype
+-- syntax
+-- cast(value as data_type)
+
+select 
+cast('123' as int) as [string to int],
+cast(123 as varchar) as [int to string],
+cast('2026-3-11' as date) as [string to date],
+creationtime,
+cast(creationtime as date) as [datetime to date]
+from sales.Orders;
+
+-- FORMAT VS CONVERT VS CAST
+
+ /*
+ CAST ->
+ for casting -> anytype to anytype
+ for formatting -> no formatting
+
+ CONVERT ->
+ for casting -> anytpe to anytype
+ for formatting -> formats only date&time
+
+ FORMAT ->
+ for casting -> anytype to only STRING
+ for formatting -> formates date&time, numbers
+*/
+ 
