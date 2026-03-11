@@ -163,3 +163,79 @@ from sales.Orders;
  for formatting -> formates date&time, numbers
 */
  
+
+-- DATEADD()
+-- adds or subtracts a specific time interval to/from a date
+-- syntax -> dateadd(part, interval, date)
+-- in our example...dateadd(year, 2, orderdate)
+
+select orderid,orderdate,
+dateadd(year, 2 , orderdate) as twoyearslater,
+dateadd(month, 3, orderdate) as threemonthslater,
+dateadd(day, -10, orderdate) as tendaysbefore
+from sales.orders;
+
+
+-- DATEDIFF()
+-- finds difference between two dates
+-- syntax -> datediff(part,start_date,end_date)
+-- in our exampe... datediff(year, orderdate, shipdate)
+
+
+-- task 
+
+-- calculate age of employees
+select 
+EmployeeID,
+BirthDate,
+datediff(year, BirthDate, GETDATE()) Employee_age
+from sales.Employees;
+
+
+-- find avg shipping duration in days for each month
+select 
+--orderid,
+--month(shipdate) as shipdate,
+--datediff(day,orderdate,shipdate) days_to_ship,
+month(orderdate) as orderdate,
+avg(datediff(day,orderdate,shipdate)) avg_days_to_ship
+from sales.Orders
+group by month(orderdate);
+
+
+-- find no of days btw each order and previous order
+
+
+--LAG() gives easy access to compare the current row with the previous row.
+-- To access data from the previous row
+
+select orderid,orderdate currentorderdate,
+lag(orderdate) over (order by orderdate) previousorderdate,
+datediff(day, lag(orderdate) over (order by orderdate), orderdate) No_of_days
+from sales.orders;
+
+
+-- validation
+-- isdate()
+-- syntax -> isdate(value)
+
+select 
+isdate('123') datecheck,
+isdate('2026-03-11') datecheck_01,
+isdate('11-03-2026') datecheck_02,
+isdate('2026') datecheck_03,
+isdate('11') datecheck_04
+
+
+select 
+--cast (orderdate as date) orderdate
+orderdate,
+isdate(orderdate),
+case when isdate(orderdate)=1 then cast(orderdate as date)
+end neworderdate
+from 
+(
+select '2025-03-11' as orderdate union
+select '2025-03-12'union
+select '2026-08'
+)t
