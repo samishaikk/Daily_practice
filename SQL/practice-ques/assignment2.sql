@@ -29,3 +29,19 @@ where salary>(select avg(salary) from employees);
 
 select firstname,departmentid,hiredate from employees where hiredate>(select min(hiredate) from employees);
 
+
+-- Write a SQL query to find the details of the employee(s) with the highest salary.
+
+select firstname+' '+lastname as fullname,salary from Employees where salary=(select max(salary) from employees);
+
+
+-- Write a SQL query to find the names of employees who work in the same department as 'John Smith'.
+
+select firstname+' '+lastname as name,DepartmentID as id from employees where DepartmentID=(select DepartmentID from employees where firstname='John' and lastname = 'smith');
+
+
+-- Write a SQL query to find the names of employees who do not belong to the department with the highest average salary.
+
+select firstname, lastname from employees where DepartmentID not in 
+(select top 1 DepartmentID from employees group by DepartmentID order by avg(salary)desc);
+
