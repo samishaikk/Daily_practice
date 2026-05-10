@@ -52,6 +52,7 @@ avg(coalesce(score,0)) over() avgscore2
 from sales.Customers
 --group by AVG(score);
 
+
 -- USE CASE -> handle null before doing mathematical operations
 
 /*
@@ -79,4 +80,50 @@ select firstname + ''+ coalesce(lastname,'') as fullnamee
 
 
 -- USECASE -> handle null before joining tables
+
+-- sort customers from lowest to highest scores, 
+-- with nulls appearing last
+
+select customerid,score from sales.customers;
+
+select customerid,score,coalesce(score,9999) [acsorder]
+from sales.customers
+order by coalesce(score,9999); 
+
+select customerid,score,
+case when score is null then 1 else 0 end flag
+from sales.customers;
+
+select customerid,score
+from sales.customers
+order by case when score is null then 1 else 0 end,score;
+
+-- null if
+-- nullif (val1, value2)
+-- if value1=value2, then null else return value1
+
+
+-- find sales price for each order by dividing sales by quantity
+
+select * from sales.Orders;
+
+select OrderID,Sales,Quantity,
+/*Sales/Quantity as Price*/
+sales/nullif(quantity,0) as price
+from  
+sales.Orders;
+
+-- identify customers who have no scores
+
+select * from sales.Customers where score is null;
+select * from sales.Customers where score is not null;
+
+-- list all details for customers woh have not placed any orders
+
+select 
+c.*,
+o.orderid
+from sales.customers c
+left join sales.orders o
+on c.customerid = o.customerid
 
