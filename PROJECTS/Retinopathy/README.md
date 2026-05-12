@@ -1,7 +1,6 @@
 # 👁️ Diabetic Retinopathy Detection
 ### Binary Classification using Transfer Learning (EfficientNetB0)
 
-
 ---
 
 ## 📌 Project Overview
@@ -142,4 +141,5 @@ Retinopathy/
 **Sami**
 - Built as part of an AI/ML portfolio project
 - Dataset: APTOS 2019 Blindness Detection (Kaggle)
+
 
