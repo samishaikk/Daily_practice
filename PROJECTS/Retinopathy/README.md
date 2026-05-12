@@ -104,6 +104,11 @@ The model correctly identified **98% of actual DR cases**, which is the most cri
 
 ---
 
+🏁 Conclusion
+This project successfully demonstrates that transfer learning with EfficientNetB0 can detect diabetic retinopathy from retinal fundus images with 97% accuracy and a near-perfect AUC of 99.66%. The model correctly identified 98% of actual DR cases, missing only 7 out of 372 in the validation set — a strong result for a medical screening tool.
+By converting the problem to binary classification, the model acts as an effective first-pass screening system that can flag high-risk patients for further specialist examination. With early detection being the single most important factor in preventing blindness from diabetic retinopathy, a reliable and fast automated screening tool like this has genuine real-world value — particularly in regions where access to ophthalmologists is limited.
+
+---
 ## ⚠️ Limitations
 
 - Binary classification only — does not distinguish between severity grades (Mild, Moderate, Severe, Proliferative)
