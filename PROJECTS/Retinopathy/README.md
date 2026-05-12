@@ -36,21 +36,6 @@ The model correctly identified **98% of actual DR cases**, which is the most cri
 - **Labels:** 5 severity grades (0–4), converted to binary (0 = No DR, 1 = Has DR)
 - **Image Size:** Resized to 224×224 pixels
 
----
-
-## 🏗️ Project Structure
-
-```
-Retinopathy/
-├── aptos2019-blindness-detection/
-│   ├── train_images/         # Retinal fundus images
-│   ├── test_images/          # Test images
-│   ├── train.csv             # Image IDs and severity labels
-│   └── test.csv              # Test image IDs
-├── blindness_detection.ipynb # Main notebook
-├── retinopathy_model.h5      # Saved trained model
-└── README.md
-```
 
 ---
 
