@@ -127,3 +127,33 @@ from sales.customers c
 left join sales.orders o
 on c.customerid = o.customerid
 
+with orders as (select 1 id, 'A' category union
+select 2, null union
+select 3, '' union
+select 4, '  '
+)
+select *, 
+datalength(category)categorylen, 
+datalength(trim(category))policy1,
+nullif(trim(category),' ')policy2,
+coalesce(nullif(trim(category),''),'unknown')policy3
+from orders;
+
+-- DATA POLICIES
+/*
+2.ONLY USE NULLS AND AVOID EMPTY STRINGS AND BLANKSPACES
+3.USE DEFAULT VALUE 'unknown' AND AVOID USING NULLS,EM.ST AND BL.SP
+*/
+
+
+-- USE CASES
+
+/*
+- Handle nulls 
+-> before data aggregration
+-> before mathe. operations
+-> before joining tables
+-> before sorting data
+-> finding unmatched data - left and right anti join
+-> data policies - using nulls or default values like unknown
+*/
