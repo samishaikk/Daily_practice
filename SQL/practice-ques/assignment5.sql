@@ -22,4 +22,3 @@ select * from employees where year(hiredate) = 2020;
 
 update employees set salary = 90000 where firstname = 'Jane' and lastname = 'Doe'
 
-select * from employees;
