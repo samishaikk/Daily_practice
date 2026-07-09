@@ -58,7 +58,7 @@ select
 	sales - first_value(sales) over(partition by productid order by sales) Sales_difference
 from sales.orders
 
--- SUMMARY
+-- SUMMARYY
 /*
 -> allow access specific value from another row
 
